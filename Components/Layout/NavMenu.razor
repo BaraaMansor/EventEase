@@ -1,0 +1,36 @@
+﻿@namespace EventEase.Components.Layout
+
+<div class="navbar-wrapper">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="" class="navbar-brand">
+                <span class="brand-icon">✓</span>
+                <span class="brand-text">EventEase</span>
+            </a>
+
+            <input type="checkbox" id="navbar-toggle" class="navbar-toggle-checkbox" />
+            <label for="navbar-toggle" class="navbar-toggle-label">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="navbar-menu">
+                <NavLink href="" class="navbar-item" Match="NavLinkMatch.All">
+                    <span class="navbar-icon">🏠</span>
+                    <span>Home</span>
+                </NavLink>
+                <NavLink href="events" class="navbar-item">
+                    <span class="navbar-icon">📅</span>
+                    <span>Events</span>
+                </NavLink>
+                <NavLink href="my-events" class="navbar-item">
+                    <span class="navbar-icon">📌</span>
+                    <span>My Events</span>
+                </NavLink>
+            </div>
+        </div>
+    </nav>
+</div>
+
+

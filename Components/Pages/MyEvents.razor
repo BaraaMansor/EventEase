@@ -1,0 +1,137 @@
+@page "/my-events"
+@using EventEase.Models
+@using EventEase.Services
+@inject EventService EventService
+@inject UserSessionService UserSessionService
+
+<PageTitle>My Events - EventEase</PageTitle>
+
+<div class="my-events-page">
+    <div class="page-header">
+        <h1>My Events</h1>
+        <p class="lead">Events you've registered for</p>
+    </div>
+
+    @if (IsLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading your events...</p>
+        </div>
+    }
+    else if (!RegisteredEvents.Any())
+    {
+        <div class="empty-state">
+            <div class="alert alert-info">
+                <h4>No Registered Events</h4>
+                <p>You haven't registered for any events yet.</p>
+                <a href="/events" class="btn btn-primary mt-2">Browse Events</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="session-info mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Session Information</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>First Visit:</strong> @SessionStats.FirstVisit.ToString("MMM dd, yyyy HH:mm")
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Last Visit:</strong> @SessionStats.LastVisit.ToString("MMM dd, yyyy HH:mm")
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Total Visits:</strong> @SessionStats.TotalVisits
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="events-summary mb-3">
+            <h4>Registered Events (@RegisteredEvents.Count)</h4>
+        </div>
+
+        <div class="registered-events">
+            @foreach (var eventItem in RegisteredEvents)
+            {
+                <div class="event-item card mb-3" @key="eventItem.Id">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="card-title mb-2">@eventItem.Name</h5>
+                                <div class="event-details">
+                                    <p class="mb-1">
+                                        <i class="bi bi-calendar"></i>
+                                        <strong>Date:</strong> @eventItem.Date.ToString("MMMM dd, yyyy")
+                                    </p>
+                                    <p class="mb-1">
+                                        <i class="bi bi-geo-alt"></i>
+                                        <strong>Location:</strong> @eventItem.Location
+                                    </p>
+                                    <p class="mb-0 text-muted">@GetEventDescription(eventItem.Description)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <span class="badge bg-success mb-2 d-block">Registered</span>
+                                <a href="/event/@eventItem.Id" class="btn btn-outline-primary btn-sm">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="actions mt-4">
+            <a href="/events" class="btn btn-primary">Browse More Events</a>
+        </div>
+    }
+</div>
+
+@code {
+    private List<Event> RegisteredEvents { get; set; } = new();
+    private bool IsLoading { get; set; } = true;
+    private (DateTime FirstVisit, DateTime LastVisit, int TotalVisits) SessionStats;
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            // Get session statistics
+            SessionStats = UserSessionService.GetSessionStats();
+
+            // Get registered event IDs
+            var registeredEventIds = UserSessionService.GetRegisteredEventIds();
+
+            // Get event details for registered events
+            var allEvents = EventService.GetAllEvents();
+            RegisteredEvents = allEvents
+                .Where(e => registeredEventIds.Contains(e.Id))
+                .OrderBy(e => e.Date)
+                .ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading registered events: {ex.Message}");
+            RegisteredEvents = new List<Event>();
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private string GetEventDescription(string description)
+    {
+        if (string.IsNullOrWhiteSpace(description))
+            return "No description available.";
+
+        return description.Length > 150 
+            ? description.Substring(0, 150) + "..." 
+            : description;
+    }
+}

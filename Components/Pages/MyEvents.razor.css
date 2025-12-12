@@ -1,0 +1,105 @@
+.my-events-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.page-header .lead {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.session-info .card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.session-info .card-body {
+  padding: 1.5rem;
+}
+
+.session-info h5 {
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+.session-info .row {
+  font-size: 0.95rem;
+}
+
+.session-info strong {
+  color: #495057;
+}
+
+.events-summary h4 {
+  color: #333;
+  font-weight: 600;
+}
+
+.event-item {
+  border: 1px solid #dee2e6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-item .card-title {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.event-item .event-details {
+  color: #666;
+}
+
+.event-item .event-details i {
+  margin-right: 0.5rem;
+  color: #6c757d;
+}
+
+.event-item .badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.empty-state .alert {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.actions {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .my-events-page {
+    padding: 1rem;
+  }
+
+  .event-item .col-md-4 {
+    margin-top: 1rem;
+    text-align: left !important;
+  }
+
+  .session-info .row .col-md-4 {
+    margin-bottom: 0.5rem;
+  }
+}

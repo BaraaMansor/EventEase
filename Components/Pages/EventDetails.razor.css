@@ -1,0 +1,158 @@
+.event-details-page {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.event-header {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.event-header h1 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.event-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.event-meta .badge {
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.event-content {
+  margin-bottom: 2rem;
+}
+
+.event-content .card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.event-content .card-body {
+  padding: 2rem;
+  background-color: white;
+}
+
+.event-content h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.detail-row {
+  margin-bottom: 1.5rem;
+}
+
+.detail-row strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.detail-row .form-control {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-row .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+}
+
+.detail-row .is-valid {
+  border-color: #28a745;
+}
+
+.detail-row .is-invalid {
+  border-color: #dc3545;
+}
+
+.detail-row small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.detail-row textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  min-width: 180px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.action-buttons .btn-primary {
+  background-color: #667eea;
+  border-color: #667eea;
+}
+
+.action-buttons .btn-primary:hover {
+  background-color: #764ba2;
+  border-color: #764ba2;
+}
+
+.action-buttons .alert {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+.action-buttons .alert-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.action-buttons .alert-success a {
+  color: #0f5132;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .event-details-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .event-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+  }
+}

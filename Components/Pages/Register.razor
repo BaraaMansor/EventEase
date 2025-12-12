@@ -1,0 +1,307 @@
+@page "/register/{id:int}"
+@using EventEase.Models
+@using EventEase.Services
+@using System.ComponentModel.DataAnnotations
+@inject EventService EventService
+@inject RegistrationService RegistrationService
+@inject UserSessionService UserSessionService
+@inject NavigationManager Navigation
+
+<PageTitle>Register - EventEase</PageTitle>
+
+<div class="register-page">
+    @if (IsLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading registration form...</p>
+        </div>
+    }
+    else if (CurrentEvent != null)
+    {
+        <div class="register-header">
+            <h1>Event Registration</h1>
+            <p class="lead">Register for: <strong>@CurrentEvent.Name</strong></p>
+        </div>
+
+        <div class="register-content">
+            <div class="card event-summary">
+                <div class="card-body">
+                    <h4>Event Details</h4>
+                    <hr />
+                    <p><strong>Event:</strong> @CurrentEvent.Name</p>
+                    <p><strong>Date:</strong> @CurrentEvent.Date.ToString("MMMM dd, yyyy")</p>
+                    <p><strong>Location:</strong> @CurrentEvent.Location</p>
+                </div>
+            </div>
+
+            <div class="card registration-form">
+                <div class="card-body">
+                    <h4>Your Information</h4>
+                    <hr />
+                    
+                    @if (!IsRegistered)
+                    {
+                        @if (!string.IsNullOrEmpty(ValidationError))
+                        {
+                            <div class="alert alert-danger">
+                                <strong>Validation Error:</strong> @ValidationError
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" 
+                                   class="form-control @GetValidationClass(FullName)" 
+                                   id="fullName" 
+                                   @bind="FullName" 
+                                   @bind:event="oninput" 
+                                   placeholder="Enter your full name"
+                                   maxlength="100"
+                                   required />
+                            @if (string.IsNullOrWhiteSpace(FullName) && ShowValidation)
+                            {
+                                <small class="text-danger">Full name is required</small>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" 
+                                   class="form-control @GetValidationClass(Email)" 
+                                   id="email" 
+                                   @bind="Email" 
+                                   @bind:event="oninput" 
+                                   placeholder="Enter your email"
+                                   maxlength="100"
+                                   required />
+                            @if (ShowValidation && !IsValidEmail())
+                            {
+                                <small class="text-danger">Valid email address is required</small>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                            <input type="tel" 
+                                   class="form-control @GetValidationClass(Phone)" 
+                                   id="phone" 
+                                   @bind="Phone" 
+                                   @bind:event="oninput" 
+                                   placeholder="Enter your phone number"
+                                   maxlength="20"
+                                   required />
+                            @if (string.IsNullOrWhiteSpace(Phone) && ShowValidation)
+                            {
+                                <small class="text-danger">Phone number is required</small>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="attendees" class="form-label">Number of Attendees <span class="text-danger">*</span></label>
+                            <input type="number" 
+                                   class="form-control @GetValidationClass(NumberOfAttendees.ToString())" 
+                                   id="attendees" 
+                                   @bind="NumberOfAttendees" 
+                                   @bind:event="oninput" 
+                                   min="1" 
+                                   max="10"
+                                   required />
+                            @if (ShowValidation && (NumberOfAttendees < 1 || NumberOfAttendees > 10))
+                            {
+                                <small class="text-danger">Number of attendees must be between 1 and 10</small>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="comments" class="form-label">Special Requests or Comments</label>
+                            <textarea class="form-control" 
+                                      id="comments" 
+                                      rows="3" 
+                                      @bind="Comments" 
+                                      @bind:event="oninput" 
+                                      placeholder="Any special accommodations needed?"
+                                      maxlength="500"></textarea>
+                            <small class="text-muted">@GetCommentsLength() / 500 characters</small>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-success btn-lg" @onclick="SubmitRegistration" disabled="@IsSubmitting">
+                                @if (IsSubmitting)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                    <span>Submitting...</span>
+                                }
+                                else
+                                {
+                                    <span>Complete Registration</span>
+                                }
+                            </button>
+                            <a href="/event/@Id" class="btn btn-outline-secondary btn-lg">Back to Details</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">
+                            <h5 class="alert-heading">Registration Successful!</h5>
+                            <p>Thank you for registering, <strong>@FullName</strong>!</p>
+                            <p>A confirmation email has been sent to <strong>@Email</strong>.</p>
+                            <hr />
+                            <p class="mb-0">We look forward to seeing you at the event!</p>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <a href="/events" class="btn btn-primary btn-lg">Browse More Events</a>
+                            <a href="/event/@Id" class="btn btn-outline-secondary btn-lg">Back to Event Details</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <h4>Event Not Found</h4>
+            <p>The event you're trying to register for doesn't exist.</p>
+            <a href="/events" class="btn btn-primary">Browse Events</a>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Event? CurrentEvent { get; set; }
+    private bool IsLoading { get; set; } = true;
+    private bool IsSubmitting { get; set; } = false;
+    private bool ShowValidation { get; set; } = false;
+    private string ValidationError { get; set; } = string.Empty;
+    
+    // Two-way data binding properties for registration form
+    private string FullName { get; set; } = string.Empty;
+    private string Email { get; set; } = string.Empty;
+    private string Phone { get; set; } = string.Empty;
+    private int NumberOfAttendees { get; set; } = 1;
+    private string Comments { get; set; } = string.Empty;
+    private bool IsRegistered { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            CurrentEvent = EventService.GetEventById(Id);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading event: {ex.Message}");
+            CurrentEvent = null;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task SubmitRegistration()
+    {
+        ShowValidation = true;
+        ValidationError = string.Empty;
+
+        if (!ValidateForm())
+        {
+            ValidationError = "Please fill in all required fields correctly.";
+            StateHasChanged();
+            return;
+        }
+
+        // Check if already registered
+        if (RegistrationService.IsUserRegistered(Email, Id))
+        {
+            ValidationError = "You are already registered for this event!";
+            StateHasChanged();
+            return;
+        }
+
+        try
+        {
+            IsSubmitting = true;
+            StateHasChanged();
+            
+            // Create registration object
+            var registration = new Registration
+            {
+                EventId = Id,
+                FullName = FullName,
+                Email = Email,
+                Phone = Phone,
+                NumberOfAttendees = NumberOfAttendees,
+                Comments = Comments
+            };
+
+            // Save registration using the service
+            await RegistrationService.RegisterForEventAsync(registration);
+            
+            // Track in user session
+            UserSessionService.AddRegisteredEvent(Id);
+            
+            IsRegistered = true;
+            StateHasChanged();
+            
+            // Navigate to my events after a short delay to show the success message
+            await Task.Delay(2000);
+            Navigation.NavigateTo("/my-events");
+        }
+        catch (Exception ex)
+        {
+            ValidationError = $"An error occurred during registration: {ex.Message}";
+            Console.Error.WriteLine($"Registration error: {ex.Message}");
+            StateHasChanged();
+        }
+        finally
+        {
+            IsSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private bool ValidateForm()
+    {
+        return !string.IsNullOrWhiteSpace(FullName) &&
+               IsValidEmail() &&
+               !string.IsNullOrWhiteSpace(Phone) &&
+               NumberOfAttendees >= 1 && NumberOfAttendees <= 10;
+    }
+
+    private bool IsValidEmail()
+    {
+        if (string.IsNullOrWhiteSpace(Email))
+            return false;
+
+        try
+        {
+            var emailAttribute = new EmailAddressAttribute();
+            return emailAttribute.IsValid(Email);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private string GetValidationClass(string? value)
+    {
+        if (!ShowValidation)
+            return string.Empty;
+            
+        return string.IsNullOrWhiteSpace(value) ? "is-invalid" : "is-valid";
+    }
+
+    private int GetCommentsLength()
+    {
+        return Comments?.Length ?? 0;
+    }
+}

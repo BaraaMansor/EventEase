@@ -1,0 +1,40 @@
+.event-card[b-2qosx7bvji] {
+  margin-bottom: 1.5rem;
+}
+
+.event-card .card[b-2qosx7bvji] {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card .card:hover[b-2qosx7bvji] {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.event-card .card-body[b-2qosx7bvji] {
+  padding: 1.5rem;
+}
+
+.event-card .card-title[b-2qosx7bvji] {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.event-card .card-text p[b-2qosx7bvji] {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.event-card .card-actions[b-2qosx7bvji] {
+  margin-top: 1rem;
+}
+
+.event-card .btn[b-2qosx7bvji] {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}

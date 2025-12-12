@@ -1,0 +1,143 @@
+.home-page[b-uakei3kc3a] {
+  min-height: 100vh;
+}
+
+.hero-section[b-uakei3kc3a] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.hero-section .container[b-uakei3kc3a] {
+  max-width: 800px;
+}
+
+.hero-section h1[b-uakei3kc3a] {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero-section .lead[b-uakei3kc3a] {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.hero-actions[b-uakei3kc3a] {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-actions .btn[b-uakei3kc3a] {
+  min-width: 180px;
+}
+
+.hero-actions .btn-outline-secondary[b-uakei3kc3a] {
+  color: white;
+  border-color: white;
+}
+
+.hero-actions .btn-outline-secondary:hover[b-uakei3kc3a] {
+  background-color: white;
+  color: #667eea;
+}
+
+.features-section[b-uakei3kc3a] {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.features-section .container[b-uakei3kc3a] {
+  max-width: 1200px;
+}
+
+.feature-card[b-uakei3kc3a] {
+  margin-bottom: 2rem;
+}
+
+.feature-card .card[b-uakei3kc3a] {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card .card:hover[b-uakei3kc3a] {
+  transform: translateY(-8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon[b-uakei3kc3a] {
+  font-size: 3rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3[b-uakei3kc3a] {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.feature-card p[b-uakei3kc3a] {
+  color: #666;
+  line-height: 1.6;
+}
+
+.session-info-section[b-uakei3kc3a] {
+  padding: 3rem 0;
+}
+
+.session-info-section .container[b-uakei3kc3a] {
+  max-width: 800px;
+}
+
+.session-info-section .card[b-uakei3kc3a] {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.session-info-section h4[b-uakei3kc3a] {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.session-info-section p[b-uakei3kc3a] {
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+@media (max-width: 768px) {
+  .hero-section[b-uakei3kc3a] {
+    padding: 3rem 0;
+  }
+
+  .hero-section h1[b-uakei3kc3a] {
+    font-size: 2rem;
+  }
+
+  .hero-section .lead[b-uakei3kc3a] {
+    font-size: 1.2rem;
+  }
+
+  .hero-actions[b-uakei3kc3a] {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn[b-uakei3kc3a] {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .features-section[b-uakei3kc3a] {
+    padding: 2rem 0;
+  }
+
+  .session-info-section[b-uakei3kc3a] {
+    padding: 2rem 0;
+  }
+}

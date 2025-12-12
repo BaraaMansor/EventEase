@@ -1,0 +1,204 @@
+.register-page {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.register-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.register-header h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.register-header .lead {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.register-content {
+  display: grid;
+  gap: 2rem;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 2rem;
+  background-color: white;
+}
+
+.card h4 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.event-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.event-summary .card-body {
+  padding: 2rem;
+}
+
+.event-summary h4 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.event-summary p {
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+}
+
+.event-summary strong {
+  color: white;
+  font-weight: 600;
+}
+
+.registration-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.registration-form .form-group {
+  margin-bottom: 0;
+}
+
+.registration-form .form-label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.registration-form .form-control {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-form .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+}
+
+.registration-form .form-control.is-valid {
+  border-color: #28a745;
+  background-image: none;
+}
+
+.registration-form .form-control.is-invalid {
+  border-color: #dc3545;
+  background-image: none;
+}
+
+.form-text {
+  color: #999;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  min-width: 150px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.action-buttons .btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.action-buttons .btn-success:hover {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+.action-buttons .btn-outline-secondary {
+  color: #667eea;
+  border-color: #667eea;
+}
+
+.action-buttons .btn-outline-secondary:hover {
+  background-color: #667eea;
+  color: white;
+}
+
+.alert {
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.alert-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.alert-success .alert-heading {
+  color: #0a3622;
+  font-weight: 600;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+@media (max-width: 768px) {
+  .register-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .register-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,105 @@
+.my-events-page[b-b2zlta0k9h] {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header[b-b2zlta0k9h] {
+  margin-bottom: 2rem;
+}
+
+.page-header h1[b-b2zlta0k9h] {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.page-header .lead[b-b2zlta0k9h] {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.session-info .card[b-b2zlta0k9h] {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.session-info .card-body[b-b2zlta0k9h] {
+  padding: 1.5rem;
+}
+
+.session-info h5[b-b2zlta0k9h] {
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+.session-info .row[b-b2zlta0k9h] {
+  font-size: 0.95rem;
+}
+
+.session-info strong[b-b2zlta0k9h] {
+  color: #495057;
+}
+
+.events-summary h4[b-b2zlta0k9h] {
+  color: #333;
+  font-weight: 600;
+}
+
+.event-item[b-b2zlta0k9h] {
+  border: 1px solid #dee2e6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-item:hover[b-b2zlta0k9h] {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-item .card-title[b-b2zlta0k9h] {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.event-item .event-details[b-b2zlta0k9h] {
+  color: #666;
+}
+
+.event-item .event-details i[b-b2zlta0k9h] {
+  margin-right: 0.5rem;
+  color: #6c757d;
+}
+
+.event-item .badge[b-b2zlta0k9h] {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.empty-state[b-b2zlta0k9h] {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.empty-state .alert[b-b2zlta0k9h] {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.actions[b-b2zlta0k9h] {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .my-events-page[b-b2zlta0k9h] {
+    padding: 1rem;
+  }
+
+  .event-item .col-md-4[b-b2zlta0k9h] {
+    margin-top: 1rem;
+    text-align: left !important;
+  }
+
+  .session-info .row .col-md-4[b-b2zlta0k9h] {
+    margin-bottom: 0.5rem;
+  }
+}

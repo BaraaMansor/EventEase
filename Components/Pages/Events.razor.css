@@ -1,0 +1,114 @@
+.events-page {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.events-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.events-page h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.events-page .lead {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.event-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+}
+
+.event-card .card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card h5 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  min-height: 3rem;
+}
+
+.event-card p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  flex-grow: 1;
+}
+
+.event-card .badge {
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.event-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 3rem;
+}
+
+.spinner-border {
+  color: #667eea;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+}
+
+.empty-state h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .events-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .events-container {
+    grid-template-columns: 1fr;
+  }
+
+  .events-page h1 {
+    font-size: 1.8rem;
+  }
+}

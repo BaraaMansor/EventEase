@@ -1,0 +1,61 @@
+@page "/events"
+@using EventEase.Models
+@using EventEase.Services
+@inject EventService EventService
+
+<PageTitle>Events - EventEase</PageTitle>
+
+<div class="events-page">
+    <h1>Upcoming Events</h1>
+    <p class="lead">Browse and discover exciting events happening near you.</p>
+
+    @if (IsLoading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading events...</p>
+        </div>
+    }
+    else if (EventList == null || !EventList.Any())
+    {
+        <div class="alert alert-info">
+            <h4>No Events Available</h4>
+            <p>There are currently no events scheduled. Please check back later!</p>
+        </div>
+    }
+    else
+    {
+        <div class="events-container">
+            @foreach (var eventItem in EventList)
+            {
+                <EventCard @key="eventItem.Id" EventData="eventItem" />
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<Event> EventList { get; set; } = new();
+    private bool IsLoading { get; set; } = true;
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            // Simulate async loading for better UX
+            EventList = EventService.GetAllEvents();
+        }
+        catch (Exception ex)
+        {
+            // Log error in production
+            Console.Error.WriteLine($"Error loading events: {ex.Message}");
+            EventList = new List<Event>();
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}
